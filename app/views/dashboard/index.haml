@@ -1,0 +1,28 @@
+%h1 Dashboard
+
+%table
+  %tr
+    %th Local Items
+    %th Remote Items
+  %tr
+    %td
+      %table
+        %tr
+          %th Time
+          %th Note
+        - @notes.each do |item|
+          %tr
+            %td= item.created_at
+            %td= item.text
+    %td
+      %table
+        %tr
+          %th Time
+          %th Note
+          %th Summary
+        - @rss.items.each do |item|
+          %tr
+            %td= item.date
+            %td= link_to item.title, item.link
+            %td= item.description
+

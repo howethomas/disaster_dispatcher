@@ -1,0 +1,19 @@
+%h1 Listing notes
+
+%table
+  %tr
+    %th Text
+    %th Contact
+    %th Public note
+
+- for note in @notes
+  %tr
+    %td=h note.text
+    %td=h note.contact_id
+    %td=h note.public_note
+  
+  %td= link_to 'Show', note_path(note)
+  %td= link_to 'Edit', edit_note_path(note)
+  %td= link_to 'Destroy', note_path(note), :confirm => 'Are you sure?', :method => :delete, :confirm => "Are you sure?", :method => :delete
+    
+= link_to 'New note', new_note_path 

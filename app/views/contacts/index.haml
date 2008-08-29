@@ -1,0 +1,39 @@
+%h2 Contacts
+
+- unless @tags.nil?
+  - form_tag(:action => :filter) do 
+    = select_tag :tag, options_for_select(@tags) 
+    = submit_tag "Filter"
+
+%table
+  %tr
+    %th First name
+    %th Last name
+    %th Email
+    %th Phone
+    %th Cell
+    %th Tags
+  - for contact in @contacts
+    %tr
+      %td=h contact.first_name
+      %td=h contact.last_name
+      %td=h contact.email
+      %td=h contact.phone
+      %td=h contact.cell
+      %td=h contact.tags
+  
+      %td= link_to 'Show', contact_path(contact)
+      %td= link_to 'Edit', edit_contact_path(contact)
+      %td= link_to 'Destroy', contact_path(contact), :confirm => 'Are you sure?', :method => :delete, :confirm => "Are you sure?", :method => :delete
+      
+= will_paginate @contacts
+= link_to 'New contact', new_contact_path 
+= link_to "Delete contacts", {:action=>"delete_contacts", :controller=>"contacts"}, :confirm => "Are you sure?"
+= link_to 'Download contacts', {:action => "export"}  
+
+%a{:href => '#', :onclick=> "new Effect.Appear('file-upload-form')"} Upload
+%span#file-upload-form{:style => 'display: none'}
+  - form_tag('/import_contacts'  , :multipart => true) do
+    = file_field_tag :filename 
+    = submit_tag "Upload"
+      

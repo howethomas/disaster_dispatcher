@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  text: MyString
+  contact_id: 1
+  public_note: false
+
+two:
+  text: MyString
+  contact_id: 1
+  public_note: false
