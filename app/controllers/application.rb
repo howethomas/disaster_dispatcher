@@ -7,6 +7,13 @@ class ApplicationController < ActionController::Base
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   
+  require 'rubygems'
+  gem 'twitter4r', '>=0.3.0'
+  require 'twitter'
+  require 'time'
+  
+  
+  
   before_filter :check_mock
   
   # See ActionController::RequestForgeryProtection for details
