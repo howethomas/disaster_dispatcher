@@ -44,4 +44,16 @@ class OptionsController < ApplicationController
     end
   end
   
+  # GET /option/new
+  # GET /option/new.xml
+  def new
+    @option = Option.new
+
+    respond_to do |format|
+      format.html # new.haml
+      format.xml  { render :xml => @contact }
+    end
+  end
+  
+  
 end

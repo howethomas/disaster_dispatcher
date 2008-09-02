@@ -8,9 +8,7 @@ class DashboardController < ApplicationController
   def index
     options = Option.find_by_user_id(current_user.id)
     if options.nil?
-      option = Option.new
-      option.save
-      redirect_to :controller=>"options", :action =>"edit", :id => option.id
+      redirect_to :controller=>"options", :action =>"new"
     else
     
       @rss = get_feeds(options.news_feed)

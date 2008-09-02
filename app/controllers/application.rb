@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   
   require 'rubygems'
-  gem 'twitter4r', '>=0.3.0'
   require 'twitter'
   require 'time'
   
