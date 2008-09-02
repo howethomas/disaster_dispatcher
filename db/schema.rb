@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080829210304) do
+ActiveRecord::Schema.define(:version => 20080902025855) do
 
   create_table "contacts", :force => true do |t|
     t.string   "first_name"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20080829210304) do
     t.string   "custom2"
     t.string   "custom3"
     t.string   "custom4"
+    t.string   "screen_name"
   end
 
   create_table "histories", :force => true do |t|
@@ -45,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20080829210304) do
 
   create_table "notes", :force => true do |t|
     t.string   "text"
-    t.integer  "contact_id"
+    t.integer  "user_id"
     t.boolean  "public_note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -62,6 +63,13 @@ ActiveRecord::Schema.define(:version => 20080829210304) do
     t.datetime "updated_at"
     t.string   "admin_phone"
     t.string   "support_url"
+    t.string   "bw_user"
+    t.string   "bw_pass"
+    t.string   "bw_server"
+    t.string   "twitter_user"
+    t.string   "twitter_pass"
+    t.string   "news_feed"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|

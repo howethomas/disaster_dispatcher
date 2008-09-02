@@ -1,35 +1,25 @@
 class OptionsController < ApplicationController
   # GET /option
   # GET /option.xml
-  def index
-    @option = Option.find(:first)      
-    
-    respond_to do |format|
-      format.html # index.haml
-      format.xml  { render :xml => @options }
-    end
-  end
-
 
   # GET /option/1/edit
   def edit
-    @option = Option.first
+    @option = Option.find_by_user_id(current_user.id)
+    if @option.nil?
+      @option = Option.new
+      @option.save
+    end
   end
 
   # PUT /option/1
   # PUT /option/1.xml
   def update
-    @option = Option.first
-
+    @option = Option.find(params[:id])
+    @option.user_id = current_user.id
+    
     respond_to do |format|
-      if @option.update_attributes(params[:option])
-        flash[:notice] = 'Option was successfully updated.'
-        if @option.mock?
-          flash[:error] = 'Dialer is in mock mode. No actual calls are going through.' 
-        else
-          flash.discard(:error )
-        end
-        format.html { render :action => "index"}
+      if @option.update_attributes(params[:option])     
+        format.html {redirect_to :controller => "dashboard", :action => "index"}
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -37,4 +27,21 @@ class OptionsController < ApplicationController
       end
     end
   end
+  
+  # POST /option
+  # POST /option.xml
+  def create
+    @option = Option.new(params[:option])
+    @option.user_id = current_user.id
+    respond_to do |format|
+      if @option.save
+        format.html {redirect_to :controller => "dashboard", :action => "index"}
+        format.xml  { head :ok }        
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @option.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
 end

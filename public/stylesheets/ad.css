@@ -3,12 +3,89 @@
 	http://localhost:3000/stylesheets/ad.css?1216907921
 	http://localhost:3000/stylesheets/ad.css?1216908701
 	http://localhost:3000/stylesheets/ad.css?1220096796
+	http://localhost:3000/stylesheets/ad.css?1220274774
+	http://localhost:3000/stylesheets/ad.css?1220303664
 */
 
 a {
 	font: "Lucida Grande", Lucida, Verdana, sans-serif;
 	font-size: 18px;
 	margin-right: 6px;
+}
+
+#main_body table tbody tr td a {
+	font-size: 14px;
+}
+
+span.logout_header {
+	float: right;
+	text-align: right;
+}
+
+#news h1 {
+	text-align: center;
+}
+
+#actions {
+	text-align: center;
+	border: 3px solid blue;
+	height: 180px;
+	background-color: #fbfebd;	
+}
+
+#actions h1 {
+	text-align: center;
+}
+
+#header {
+	width: 100%;
+}
+
+#status_form {
+	text-align: center;
+	border-bottom: 3px solid navy;
+	}
+#main_body {
+	float: left;
+	width: 75%;
+	border: 3px solid navy;
+	background-color: azure;
+}
+
+#left_login {
+	float: left;
+	margin-right: 10px;
+	
+}
+
+#main_body table tbody tr th {
+	
+}
+
+#news ul a {
+	font-size: 12px;
+}
+
+#right {
+	float: right;
+	width: 23%;
+	height: 800px;
+	border: 3px solid navy;
+}
+
+#main_body h1 {
+	text-align: center;
+	
+}
+
+#footer {
+	width: 100%;
+	clear: both;
+	margin-top: 10px;
+}
+
+#news {
+	height: 500px;	
 }
 
 text_fields {

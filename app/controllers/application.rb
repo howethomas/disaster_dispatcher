@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   
   
   
-  before_filter :check_mock
+  #before_filter :check_options, :unless => :create
   
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -26,9 +26,15 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
   private
-  def check_mock
-    if logged_in? and Option.first.mock
-      flash[:error] = 'Dialer is in mock mode. No actual calls are going through.'
+  def check_options
+    if logged_in?
+      options = Option.find_by_user_id(current_user.id)
+      if options.nil?
+        options = Option.new
+        options.user_id = User.find(current_user.id)
+        options.save
+        redirect_to :controller=> "options", :action => "edit", :id => options.id
+      end
     end    
   end
   

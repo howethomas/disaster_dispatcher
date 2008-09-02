@@ -41,14 +41,15 @@ class NotesController < ApplicationController
   # POST /note.xml
   def create
     @note = Note.new(params[:note])
+    @note.user_id = current_user.id
     respond_to do |format|
       if @note.save
         flash[:notice] = 'Note was successfully created.'
-        format.html { redirect_to(note_path(@note)) }
+        format.html { redirect_to :controller => "dashboard", :action => "index" }
         format.xml  { render :xml => @note, :status => :created, :location => @note }
       else
         flash[:notice] = 'Note was NOT successfully created.'
-        format.html { render :action => "new" }
+        format.html { redirect_to :controller => "dashboard", :action => "index" }
         format.xml  { render :xml => @note.errors, :status => :unprocessable_entity }
       end
     end

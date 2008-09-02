@@ -14,6 +14,7 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :version => '~> 2.3.2', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'chronic', :version => '~> 0.2.3', :lib => 'chronic'
   config.gem 'fastercsv', :version =>'~>1.2.3', :lib => 'fastercsv'
+  config.gem "twitter", :lib => 'twitter'
   
   
   # Settings in config/environments/* take precedence over those specified here.
@@ -69,7 +70,7 @@ Rails::Initializer.run do |config|
   # config.active_record.schema_format = :sql
 
   # Activate observers that should always be running
-  # config.active_record.observers = :cacher, :garbage_collector
+  config.active_record.observers = :note_observer
 end
 
 

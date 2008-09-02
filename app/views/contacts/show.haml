@@ -17,58 +17,13 @@
 %p
   %b Cell:
   =h @contact.cell 
-
 %p
-  %b Address1:
-  =h @contact.address1 
-
-%p
-  %b Address2:
-  =h @contact.address2 
-
-%p
-  %b City:
-  =h @contact.city 
-
-%p
-  %b State:
-  =h @contact.state 
-
-%p
-  %b Country:
-  =h @contact.country 
-
-%p
-  %b Post code:
-  =h @contact.post_code 
-
-%p
-  %b Time zone:
-  =h @contact.time_zone 
-
-%p
-  %b Tags
-  =h @contact.tags 
-
-%p
-  %b Custom Field 0
+  %b Organization 
   =h @contact.custom0
 
 %p
-  %b Custom Field 1
-  =h @contact.custom1
-
-%p
-  %b Custom Field 2
-  =h @contact.custom3
-
-%p
-  %b Custom Field 3
-  =h @contact.custom3
-
-%p
-  %b Custom Field 4
-  =h @contact.custom4
+  %b Twitter Screen Name
+  =h @contact.screen_name
 
 = link_to 'Edit', edit_contact_path(@contact)
-= link_to 'Back', contacts_path
+= link_to 'Dashboard', :controller => "dashboard", :action => "index"

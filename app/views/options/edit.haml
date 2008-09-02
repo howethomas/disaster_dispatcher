@@ -1,37 +1,29 @@
-%h1 Editing option
+%h1 Options
 
 = error_messages_for :option
 
+In order for your application to work properly, we need to 
+have the following information:
+
 - form_for(@option) do |f|
   %p
-    %b Version
-    = f.text_field :version 
+    %b Broadsoft User ID
+    = f.text_field :bw_user 
   %p
-    %b Mock
-    = f.check_box :mock
+    %b Broadsoft Password
+    = f.text_field :bw_pass 
   %p
-    %b Debug level
-    = f.text_field :debug_level 
+    %b Broadsoft Server
+    = f.text_field :bw_server 
   %p
-    %b Admin name
-    = f.text_field :admin_name 
+    %b Twitter User Name
+    = f.text_field :twitter_user 
   %p
-    %b Admin email
-    = f.text_field :admin_email
+    %b Twitter Password
+    = f.text_field :twitter_pass
   %p
-    %b Admin phone
-    = f.text_field :admin_phone
-     
-  %p
-    %b Daily summary
-    = f.check_box :daily_summary 
-    
-  %p
-    %b Support URL
-    = f.text_field :support_url 
-
-  %p= f.submit "Update"
+    %b RSS News Feed
+    = f.text_field :news_feed
+  %p= f.submit "Update and Go!"
   
-= link_to 'Show', option_path(@option)
-= link_to 'Back', options_path
 

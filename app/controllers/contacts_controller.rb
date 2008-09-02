@@ -65,11 +65,21 @@ class ContactsController < ApplicationController
     @contact = Contact.new(params[:contact])
     @contact.account_id = current_user.account_id
     
+    
+    
     respond_to do |format|
       if @contact.save
         flash[:notice] = 'Contact was successfully created.'
         format.html { redirect_to(contact_path(@contact)) }
         format.xml  { render :xml => @contact, :status => :created, :location => @contact }
+        
+        # Follow the contact
+        o = Option.find_by_user_id(current_user.id)
+        tw = Twitter::Base.new(o.twitter_user,o.twitter_pass)
+        tw.post("follow #{@contact.screen_name}")
+        
+        # Send him a welcome message
+        tw.d(@contact.screen_name, "You will now receive updates. To send a message directly,")
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @contact.errors, :status => :unprocessable_entity }
