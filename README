@@ -1,6 +1,24 @@
-== Voxeo Auto Dialer
+== Disaster Dispatcher
 
+The Disaster Dispatcher is a Voice Mashup that integrates Twitter, Broadworks and RSS
+feeds to provide a one window communications tool for emergency operators.  In 
+emergency situations, communications between fire and police are often hampered because 
+they use different radios and equipment.  For domestic natural disasters, these communications
+issues are exacerbated by the addition of the national guard, NGOs like the boy scouts, 
+and common citizens.  Not only don't these groups use the same equipment, but because no one
+knows where the next earthquake, tornado or flood will strike, it is impossible to a-priori
+know who will be involved. Communications channels must be setup ad-hoc, and quickly.
 
+This mashup uses the most common denominator of all these groups: the cell phone. By using
+Broadsoft Broadworks, we are able to immediately contact the right person, saving precious time.
+In addition, Broadworks can front end a call center that can scale with the size of the disaster
+in real time. By using twitter to notify the disparate groups of status in real time, communications are 
+bridged between not only all the active groups, but the passive groups as well including
+concerned family members and the press.  By keeping all of the data seen by the participants,
+emergency personnel can analyze them after the fact to optimize response procedures.
+
+For more information about this program, or about voice mashups in general, you can
+read my blog at http://www.thethomashowecompany.com.  Cool shoes.
 
 
 == Installation Instructions
@@ -26,7 +44,7 @@ already had mysql installed.
 
 Once the environment is setup, you can finish it up with the following commands:
 
-	git clone git://github.com/howethomas/voxeo-auto-dialer.git
+	git clone git://github.com/howethomas/disaster_dispatcher.git 
 	export RAILS_ENV=production
 	
 	---------------------------------------------------------------------------
@@ -36,9 +54,9 @@ Once the environment is setup, you can finish it up with the following commands:
 	mysqld-safe &
 	---------------------------------------------------------------------------
 	
-	gem install rake haml
-	mysqladmin create auto_dialer
-	cd voxeo-auto-dialer/auto_dialer
+	gem install rake haml twitter
+	mysqladmin create disaster_dispatcher
+	cd disaster_dispatcher
 	
 	---------------------------------------------------------------------------
 	At this point, you need to configure config/database.yml for your setup. In the 
@@ -49,14 +67,12 @@ Once the environment is setup, you can finish it up with the following commands:
 	---------------------------------------------------------------------------
 
    rake db:schema:load
-	./script/runner Utility.setup_options
 	./script/server -p 80 -d
-	nohup ./script/runner Runner.do_loop &
 
-All setup and ready to go.
-
+All setup and ready to go!
 
 
+The standard rails documentation follows:
 
 == Web Servers
 

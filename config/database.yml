@@ -16,7 +16,7 @@ test:
 production:
     adapter: mysql
     encoding: utf8
-    database: auto_dialer
+    database: disaster_dispatcher
     username: root
     password:
     socket: /var/run/mysqld/mysqld.sock
