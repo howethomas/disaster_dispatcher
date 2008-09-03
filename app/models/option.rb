@@ -1,22 +1,25 @@
 class Option < ActiveRecord::Base
 
   def validate
-    begin
-      rss_content = ""
+    unless news_feed.empty?
+      begin
+        rss_content = ""
       
-      # Check the RSS feeds
-      open(news_feed) do |f|
-         rss_content = f.read
-      end
-      # Parse the feed, dumping its contents to rss
-      rss = RSS::Parser.parse(rss_content, false)
-      if rss.nil? || rss.items.size == 0
+        # Check the RSS feeds
+        open(news_feed) do |f|
+           rss_content = f.read
+        end
+        # Parse the feed, dumping its contents to rss
+        rss = RSS::Parser.parse(rss_content, false)
+        if rss.nil? || rss.items.size == 0
+          errors.add(news_feed)
+        end      
+      rescue Exception => e
         errors.add(news_feed)
-      end      
-    rescue Exception => e
-      errors.add(news_feed)
+      end
+    else
+      news_feed = "http://news.google.com/news?ned=us&output=rss"
     end
-    
 
     # Now check Twitter
     begin

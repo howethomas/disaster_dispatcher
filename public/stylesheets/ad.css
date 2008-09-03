@@ -5,6 +5,7 @@
 	http://localhost:3000/stylesheets/ad.css?1220096796
 	http://localhost:3000/stylesheets/ad.css?1220274774
 	http://localhost:3000/stylesheets/ad.css?1220303664
+	http://localhost:3000/stylesheets/ad.css?1220328870
 */
 
 a {
@@ -53,9 +54,29 @@ span.logout_header {
 }
 
 #left_login {
-	float: left;
 	margin-right: 10px;
-	
+	float: left;
+}
+
+#right_signup {
+	width: 400px;
+	position: absolute;
+	left: 350px;
+}
+
+#right_login {
+	float: right;
+	clear: none;
+	position: absolute;
+	left: 350px;
+	width: 400px;
+}
+
+#bottom_login {
+	float: left;
+	width: 100%;
+	position: absolute;
+	bottom: 40px;
 }
 
 #main_body table tbody tr th {
@@ -69,8 +90,9 @@ span.logout_header {
 #right {
 	float: right;
 	width: 23%;
-	height: 800px;
 	border: 3px solid navy;
+	height: 1055px;
+	
 }
 
 #main_body h1 {
@@ -81,7 +103,6 @@ span.logout_header {
 #footer {
 	width: 100%;
 	clear: both;
-	margin-top: 10px;
 }
 
 #news {

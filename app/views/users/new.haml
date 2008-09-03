@@ -1,0 +1,33 @@
+#left_login
+  %p= image_tag('/images/godzilla.jpg')
+#right_signup
+  %h1 Sign Yourself Up Before You're Toast!
+  This is a demonstration program, not something I would really use 
+  to save drowning people unless you had the okey-doeky from Twitter.
+  But hey, maybe you do. And even if you don't, and you use this to 
+  save some poor drowning schmuck, then cool.  Just don't sue me. 
+  I'm just a geek.   
+  %br
+  %br
+  This program requires that you have an active 
+  = link_to "twitter", "http://www.twitter.com" 
+  and 
+  = link_to "broadworks", "http://www.broadsoft.com" 
+  accounts. 
+  %br
+  %br
+  %p= error_messages_for :user
+  - form_for :user, :url => users_path do |f|
+    Login 
+    = f.text_field :login
+    %p
+    Email
+    = f.text_field :email
+    %p
+    Password
+    = f.password_field :password
+    %p
+    Confirm Password
+    = f.password_field :password_confirmation
+    %p
+    = submit_tag 'Sign up'

@@ -10,8 +10,11 @@ class DashboardController < ApplicationController
     if options.nil?
       redirect_to :controller=>"options", :action =>"new"
     else
-    
-      @rss = get_feeds(options.news_feed)
+      unless options.news_feed.empty?
+        @rss = get_feeds(options.news_feed)
+      else
+        @rss = get_feeds("http://news.google.com/news?ned=us&output=rss")
+      end
       @notes = Note.find(:all, :order => "created_at DESC", :limit => 10)
     
       o = Option.find_by_user_id(current_user.id)

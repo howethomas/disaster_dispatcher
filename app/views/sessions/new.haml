@@ -1,0 +1,36 @@
+#left_login
+  %p= image_tag('/images/godzilla.jpg')
+#right_login
+  %h1 Disaster Dispatcher
+  %strong What is it?
+  %p
+    The Disaster Dispatcher is a Voice Mashup that integrates Twitter, Broadworks and RSS
+    feeds to provide a one window communications tool for emergency operators.  In 
+    emergency situations, communications between fire and police are often hampered because 
+    they use different radios and equipment.  For domestic natural disasters, these communications
+    issues are exacerbated by the addition of the national guard, NGOs like the boy scouts, 
+    and common citizens.  Not only don't these groups use the same equipment, but because no one
+    knows where the next earthquake, tornado or flood will strike, it is impossible to a-priori
+    know who will be involved. Communications channels must be setup ad-hoc, and quickly.
+  %p
+    This mashup uses the most common denominator of all these groups: the cell phone. By using
+    Broadsoft Broadworks, we are able to immediately contact the right person, saving precious time.
+    In addition, Broadworks can front end a call center that can scale with the size of the disaster
+    in real time. By using twitter to notify the disparate groups of status in real time, communications are 
+    bridged between not only all the active groups, but the passive groups as well including
+    concerned family members and the press.  By keeping all of the data seen by the participants,
+    emergency personnel can analyze them after the fact to optimize response procedures.
+
+  - form_tag sessions_path do
+    Login
+    = text_field_tag 'login'
+    %p
+    Password
+    = password_field_tag 'password'
+    %p
+    Remember me:
+    = check_box_tag 'remember_me'
+    = submit_tag 'Log in'	
+    %p
+#bottom_login
+  = link_to "Not a user? Sign up now!", :controller => :users, :action => :new 

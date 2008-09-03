@@ -1,0 +1,29 @@
+%h1 Options
+
+= error_messages_for :option
+
+In order for your application to work properly, we need to 
+have the following information:
+
+- form_for(@option) do |f|
+  %p
+    %b Broadsoft User ID
+    = f.text_field :bw_user 
+  %p
+    %b Broadsoft Password
+    = f.text_field :bw_pass 
+  %p
+    %b Broadsoft Server
+    = f.text_field :bw_server 
+  %p
+    %b Twitter User Name
+    = f.text_field :twitter_user 
+  %p
+    %b Twitter Password
+    = f.text_field :twitter_pass
+  %p
+    %b RSS News Feed
+    = f.text_field :news_feed
+  %p= f.submit "Update and Go!"
+  
+
