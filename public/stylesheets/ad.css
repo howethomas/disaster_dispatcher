@@ -6,6 +6,7 @@
 	http://localhost:3000/stylesheets/ad.css?1220274774
 	http://localhost:3000/stylesheets/ad.css?1220303664
 	http://localhost:3000/stylesheets/ad.css?1220328870
+	http://localhost:3000/stylesheets/ad.css?1220406609
 */
 
 a {
@@ -56,6 +57,7 @@ span.logout_header {
 #left_login {
 	margin-right: 10px;
 	float: left;
+	height: 560px;
 }
 
 #right_signup {

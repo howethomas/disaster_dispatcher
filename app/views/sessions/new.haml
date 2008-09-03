@@ -1,5 +1,6 @@
 #left_login
   %p= image_tag('/images/godzilla.jpg')
+  = link_to "Not a user? Sign up now!", :controller => :users, :action => :new 
 #right_login
   %h1 Disaster Dispatcher
   %strong What is it?
@@ -32,5 +33,4 @@
     = check_box_tag 'remember_me'
     = submit_tag 'Log in'	
     %p
-#bottom_login
-  = link_to "Not a user? Sign up now!", :controller => :users, :action => :new 
+  
