@@ -4,34 +4,6 @@ class ContactsController < ApplicationController
   
   before_filter :login_required
   
-  # GET /contact
-  # GET /contact.xml
-  def index
-    @contacts = Contact.paginate :page => params[:page], :order => :last_name, :per_page => 25 
-    @tags = Contact.get_tags
-
-    respond_to do |format|
-      format.html # index.haml
-      format.xml  { render :xml => @contacts }
-    end
-  end
-  def filter
-    @tags = Contact.get_tags
-    if params[:tag].nil?
-      filter = params[:id]
-    else
-      filter = params[:tag]
-    end
-       
-    unless filter == "All"
-      @contacts = Contact.paginate :page => params[:page], :order => :last_name, :per_page => 25, :conditions => ["tags like ?", "%#{filter}%"]
-      @tag = filter
-    else
-      @contacts = Contact.paginate :page => params[:page], :order => :last_name, :per_page => 25       
-    end
-    render :action => 'index'
-  end
-  
   # GET /contact/1
   # GET /contact/1.xml
   def show
@@ -70,14 +42,15 @@ class ContactsController < ApplicationController
     
     respond_to do |format|
       if @contact.save
-        flash[:notice] = 'Contact was successfully created.'
-        format.html { redirect_to(contact_path(@contact)) }
-        format.xml  { render :xml => @contact, :status => :created, :location => @contact }
-        
         # Follow the contact
         o = Option.find_by_user_id(current_user.id)
         tw = Twitter::Base.new(o.twitter_user,o.twitter_pass)
         tw.post("follow #{@contact.screen_name}")
+        
+        flash[:notice] = 'Contact was successfully created.'
+        format.html { redirect_to :controller => "dashboard" }
+        format.xml  { render :xml => @contact, :status => :created, :location => @contact }
+        
         
         # Send him a welcome message
         tw.d(@contact.screen_name, "You will now receive updates. To send a message directly,")

@@ -7,6 +7,7 @@
 	http://localhost:3000/stylesheets/ad.css?1220303664
 	http://localhost:3000/stylesheets/ad.css?1220328870
 	http://localhost:3000/stylesheets/ad.css?1220406609
+	http://localhost:3000/stylesheets/ad.css?1220409017
 */
 
 a {
@@ -30,9 +31,9 @@ span.logout_header {
 
 #actions {
 	text-align: center;
-	border: 3px solid blue;
 	height: 180px;
-	background-color: #fbfebd;	
+	background-color: white;
+	border-bottom: 3px solid gray;	
 }
 
 #actions h1 {
@@ -45,13 +46,14 @@ span.logout_header {
 
 #status_form {
 	text-align: center;
-	border-bottom: 3px solid navy;
+	border-bottom: 3px solid gray;
+	background-color: white;
 	}
 #main_body {
 	float: left;
 	width: 75%;
 	border: 3px solid navy;
-	background-color: azure;
+	background-color: whitesmoke;
 }
 
 #left_login {
@@ -94,7 +96,7 @@ span.logout_header {
 	width: 23%;
 	border: 3px solid navy;
 	height: 1055px;
-	
+	background-color: whitesmoke;	
 }
 
 #main_body h1 {
@@ -109,6 +111,7 @@ span.logout_header {
 
 #news {
 	height: 500px;	
+	background-color: whitesmoke;
 }
 
 text_fields {

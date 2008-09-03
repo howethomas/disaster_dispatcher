@@ -29,7 +29,7 @@ class DashboardController < ApplicationController
     o = Option.find_by_user_id(current_user.id)
     resource = RestClient::Resource.new("http://#{o.bw_server}/com.broadsoft.xsi-actions/v1.0/user/howethomasUser1@xdp.broadsoft.com", o.bw_user, o.bw_pass)
     resource["calls/new/#{contact.cell}"].post "hello"
-    redirect_to "index"
+    redirect_to :action => "index"
   end
   
   

@@ -1,9 +1,8 @@
 #main_body
-  %p.flash-notice{:style => "color: green"}= flash[:notice]
-  %p.flash-error{ :style => "color: red"  }= flash[:error]
-  
-  %h1 Send Information to Workers
   #status_form
+    %h1 Send Information to Workers
+    %p.flash-notice{:style => "color: green"}= flash[:notice]
+    %p.flash-error{ :style => "color: red"  }= flash[:error]
     - form_for(@note) do |f| 
       %p
         %b What's going on? Type your message in here to send to everyone in the field
@@ -24,7 +23,7 @@
         %td{:width => "400px"}= item.text 
         %td{:width => "200px"}= link_to item.user.name, "http://www.twitter.com/#{item.user.screen_name}"
         %td{:width => "200px"}= "#{distance_of_time_in_words(Time.now, item.created_at)} ago"
-        - if Contact.exists?(:screen_name => item.user.screen_name.downcase)
+        - if Contact.exists?(:screen_name => item.user.screen_name)
           %td{:width => "200px"}= link_to "Call #{item.user.screen_name} Now", :action => "call", :id => "#{item.user.screen_name}"
         - else
           %td{:width => "200px"}= link_to "Add #{item.user.screen_name} as Contact", :controller => "contacts", :action => "new", :screen_name => "#{item.user.screen_name}"
@@ -38,9 +37,7 @@
     #action_item= link_to "About", "http://www.github.com/howethomas/disaster_dispatcher"
     #action_item= logout
     %br
-     
-    
-    
+
   #news
     %h1 Outside News Feed
     - for r in @rss.items[1..10] do
