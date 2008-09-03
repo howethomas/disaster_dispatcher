@@ -53,7 +53,12 @@ class ContactsController < ApplicationController
         
         
         # Send him a welcome message
-        tw.d(@contact.screen_name, "You will now receive updates. To send a message directly,")
+        begin
+          tw.d(@contact.screen_name, "You will now receive updates. To send a message directly,")          
+        rescue Exception => e
+          # This might blow up because you can only send direct messages to people who follow you...
+        end
+        
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @contact.errors, :status => :unprocessable_entity }
