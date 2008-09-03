@@ -3,6 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :sessions
   map.resources :contacts
+  map.resources :notes
   
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
   map.signup '/signup', :controller => 'users', :action => 'new'
