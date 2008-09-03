@@ -74,7 +74,7 @@ class ContactsController < ApplicationController
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
         flash[:notice] = 'Contact was successfully updated.'
-        format.html { redirect_to(contact_path(@contact)) }
+        format.html { redirect_to :controller => "dashboard" }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

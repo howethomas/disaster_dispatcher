@@ -27,9 +27,24 @@ class DashboardController < ApplicationController
     @screen_name = params[:id]
     contact = Contact.find_by_screen_name(@screen_name.downcase)
     o = Option.find_by_user_id(current_user.id)
-    resource = RestClient::Resource.new("http://#{o.bw_server}/com.broadsoft.xsi-actions/v1.0/user/howethomasUser1@xdp.broadsoft.com", o.bw_user, o.bw_pass)
-    resource["calls/new/#{contact.cell}"].post "hello"
-    redirect_to :action => "index"
+    
+    if o.bw_user.empty? or o.bw_pass.empty? or o.bw_server.empty? 
+      flash[:error] = "Cannot create call - incomplete broadsoft setup. Fix in Application Options"
+      redirect_to :action => "index"
+      return
+    end
+    if contact.cell.nil? or contact.cell.empty?
+      flash[:error] = "Cannot create call - no cell phone defined for user"
+    else
+      begin
+        resource = RestClient::Resource.new("http://#{o.bw_server}/com.broadsoft.xsi-actions/v1.0/user/howethomasUser1@xdp.broadsoft.com", o.bw_user, o.bw_pass)
+        resource["calls/new/#{contact.cell}"].post "hello"
+        flash[:notice] = "Call made"                
+      rescue Exception => e
+        flash[:error] = "Cannot create call - probably an authorization issue with the call server. Fix in Application Options"
+      end
+      redirect_to :action => "index"
+    end
   end
   
   

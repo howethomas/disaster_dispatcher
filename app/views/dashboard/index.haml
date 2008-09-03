@@ -20,12 +20,15 @@
       %th When 
     - @public_feed.each do |item|
       %tr
-        %td{:width => "400px"}= item.text 
-        %td{:width => "200px"}= link_to item.user.name, "http://www.twitter.com/#{item.user.screen_name}"
-        %td{:width => "200px"}= "#{distance_of_time_in_words(Time.now, item.created_at)} ago"
         - if Contact.exists?(:screen_name => item.user.screen_name)
+          %td{:width => "400px"}= link_to item.text, "http://www.twitter.com/#{item.user.screen_name}" 
+          %td{:width => "200px"}= link_to item.user.name, :controller => "contacts", :action => "edit", :id => Contact.find_by_screen_name(item.user.screen_name).id
+          %td{:width => "200px"}= "#{distance_of_time_in_words(Time.now, item.created_at)} ago"
           %td{:width => "200px"}= link_to "Call #{item.user.screen_name} Now", :action => "call", :id => "#{item.user.screen_name}"
         - else
+          %td{:width => "400px"}= link_to item.text, "http://www.twitter.com/#{item.user.screen_name}" 
+          %td{:width => "200px"}= item.user.name
+          %td{:width => "200px"}= "#{distance_of_time_in_words(Time.now, item.created_at)} ago"
           %td{:width => "200px"}= link_to "Add #{item.user.screen_name} as Contact", :controller => "contacts", :action => "new", :screen_name => "#{item.user.screen_name}"
          
     
