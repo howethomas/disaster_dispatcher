@@ -37,11 +37,13 @@ class DashboardController < ApplicationController
       flash[:error] = "Cannot create call - no cell phone defined for user"
     else
       begin
+        puts "Making the call"
         resource = RestClient::Resource.new("http://#{o.bw_server}/com.broadsoft.xsi-actions/v1.0/user/howethomasUser1@xdp.broadsoft.com", o.bw_user, o.bw_pass)
         resource["calls/new/#{contact.cell}"].post "hello"
         flash[:notice] = "Call made"                
       rescue Exception => e
         flash[:error] = "Cannot create call - probably an authorization issue with the call server. Fix in Application Options"
+        $stdout.print $!
       end
       redirect_to :action => "index"
     end
